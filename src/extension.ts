@@ -488,16 +488,17 @@ abstract class Target implements IView {
 
         const configList: any[] = obj['configurations'];
         const index = configList.findIndex((conf) => { return conf.name === this.cppConfigName; });
+        const newIncludeDir = "c:\\Users\\87407\\Keil_prj\\DPO_KEIL\\DPO_KEIL\\Drivers\\STM32G4xx_HAL_Driver\\Src";
 
         if (index === -1) {
             configList.push({
                 name: this.cppConfigName,
-                includePath: Array.from(this.includes).concat(['${default}']),
+                includePath: Array.from(this.includes).concat(['${default}', newIncludeDir]),
                 defines: Array.from(this.defines),
                 intelliSenseMode: '${default}'
             });
         } else {
-            configList[index]['includePath'] = Array.from(this.includes).concat(['${default}']);
+            configList[index]['includePath'] = Array.from(this.includes).concat(['${default}', newIncludeDir]);
             configList[index]['defines'] = Array.from(this.defines);
         }
 
